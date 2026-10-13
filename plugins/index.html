@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>插件系统 — MaciWatch</title>
-  <meta name="description" content="MaciWatch 插件：一份声明式 JSON 清单即可在手表上运行轻应用。在线生成器、清单格式参考与示例插件。" />
+  <meta name="description" content="MaciWatch 插件：一份声明式 JSON 清单即可在手表上运行轻应用。AI 代写提示词、在线生成器、清单格式参考、内置与热心网友分享的示例插件。" />
   <meta name="theme-color" content="#070707" />
   <link rel="canonical" href="https://maciwatch.zpad.app/plugins/" />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
@@ -12,14 +12,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MaciWatch" />
   <meta property="og:title" content="插件系统 — MaciWatch" />
-  <meta property="og:description" content="一份声明式 JSON 清单即可在手表上运行轻应用：在线生成器、格式参考与示例插件。" />
+  <meta property="og:description" content="一份声明式 JSON 清单即可在手表上运行轻应用：AI 代写提示词、在线生成器、格式参考与社区示例插件。" />
   <meta property="og:url" content="https://maciwatch.zpad.app/plugins/" />
   <meta property="og:image" content="https://maciwatch.zpad.app/assets/app-icon.png" />
   <meta name="twitter:card" content="summary" />
-  <script type="module" crossorigin src="/assets/plugins-DnS3ogVe.js"></script>
+  <script type="module" crossorigin src="/assets/plugins-DJN2Axxc.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/main-B8qPRR_F.js">
   <link rel="stylesheet" crossorigin href="/assets/main-DoHkkakz.css">
-  <link rel="stylesheet" crossorigin href="/assets/plugins-B4dUargP.css">
+  <link rel="stylesheet" crossorigin href="/assets/plugins-D2S6HJX8.css">
 </head>
 <body>
   <svg class="icon-system" aria-hidden="true" focusable="false">
@@ -70,8 +70,10 @@
         <div class="fact-chips" aria-label="插件能力概览">
           <span>声明式 JSON</span>
           <span>HTTP + JSONPath</span>
+          <span>14 种内容组件</span>
           <span>状态本地持久化</span>
           <span>{{模板}} 变量</span>
+          <span>AI 代写提示词</span>
         </div>
       </div>
     </section>
@@ -85,7 +87,7 @@
         <article>
           <span class="step-no">01</span>
           <h3>生成清单</h3>
-          <p>用下方在线生成器配置图标、页面与动作，导出 <code>&lt;id&gt;.json</code>；或直接下载示例插件改字段。</p>
+          <p>复制下方「AI 代写提示词」粘给任意 AI，补一句需求直接生成；或用在线生成器配置导出 <code>&lt;id&gt;.json</code>，也可以下载示例插件改字段。</p>
         </article>
         <article>
           <span class="step-no">02</span>
@@ -97,6 +99,28 @@
           <h3>蜂窝里打开</h3>
           <p>插件出现在 Honeycomb 蜂窝中，点按即进入；打开时自动执行首个 HTTP 动作拉取数据，也可配置定时刷新。</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section plugins-ai" id="ai" aria-labelledby="ai-title">
+      <div class="shell section-head">
+        <p class="eyebrow">AI Prompt</p>
+        <h2 id="ai-title">让 AI 帮你写插件</h2>
+        <p>不会写 JSON 也没关系：把下面这段格式提示词整段复制给任何 AI（ChatGPT、Claude、GLM……），末尾补一句你的需求，它就能产出可直接导入 MaciWatch 的插件清单。</p>
+      </div>
+      <div class="shell">
+        <div class="ai-card">
+          <div class="ai-card-head">
+            <ol class="ai-steps">
+              <li>复制提示词</li>
+              <li>粘给 AI，写下你的需求</li>
+              <li>把生成的 JSON 导入 MaciWatch</li>
+            </ol>
+            <button class="button download" type="button" data-copy-ai-prompt><svg aria-hidden="true"><use href="#i-copy" /></svg>复制提示词</button>
+          </div>
+          <pre class="json-view ai-prompt" id="ai-prompt"></pre>
+          <p class="ai-note">提示词与 App 内置解析器逐字段对齐，AI 产出的清单可直接走「插件管理 → 导入 → 粘贴清单文本」。</p>
+        </div>
       </div>
     </section>
 
@@ -306,6 +330,8 @@
                   <tr><th scope="row"><code>body</code></th><td>Array</td><td>内容组件，见下一节；可为空</td></tr>
                   <tr><th scope="row"><code>settings</code></th><td>Array</td><td>设置区控件，改动即写回 state；可省略</td></tr>
                   <tr><th scope="row"><code>bottom</code></th><td>Array</td><td>底部按钮；可省略</td></tr>
+                  <tr><th scope="row"><code>fit</code></th><td>Bool</td><td><code>true</code> = 一屏完整（FitPage）：中区不滚动、内容自适应——文字自动缩放、圆环 / 二维码占满中区；缺省 <code>false</code> 走溢出滚动 + 底部呼吸折叠箭头</td></tr>
+                  <tr><th scope="row"><code>native</code></th><td>String</td><td>原生页标记（当前白名单 <code>music</code>）：整页直接渲染内置音乐 App（扫码登录 / 四宫格 / 播放器），界面与行为和原生一致，插件只做入口</td></tr>
                 </tbody>
               </table>
             </div>
@@ -324,16 +350,24 @@
 
           <section id="components">
             <h2>3. 内容组件</h2>
-            <p><code>body</code> 是组件数组，每个组件以 <code>type</code> 区分。除 <code>icon</code>、<code>list</code>、<code>divider</code> 外，文本类组件用 <code>value</code>（字面量，支持 <code>{{key}}</code> 模板）或 <code>bind</code>（读 state）二选一。</p>
+            <p><code>body</code> 是组件数组，每个组件以 <code>type</code> 区分。文本取值方式：<code>value</code>（字面量，支持 <code>{{key}}</code> 模板）或 <code>bind</code>（读 state；<code>np.</code> 前缀实时读内置播放器）二选一。</p>
             <div class="table-wrap docs-table">
               <table>
                 <thead><tr><th scope="col">type</th><th scope="col">字段</th><th scope="col">说明</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row"><code>text</code></th><td><code>value</code> / <code>bind</code>、<code>style</code>、<code>color</code></td><td>文本。<code>style</code>：<code>normal</code> · <code>hero</code>（大字）· <code>caption</code>（小字）；<code>color</code>：<code>default</code> · <code>accent</code> · <code>warning</code></td></tr>
-                  <tr><th scope="row"><code>metric</code></th><td><code>value</code> / <code>bind</code>、<code>unit</code>、<code>style</code></td><td>大数值（汇率 / 计数），<code>unit</code> 追加单位后缀 · style 缺省 <code>hero</code></td></tr>
+                  <tr><th scope="row"><code>text</code></th><td><code>value</code> / <code>bind</code>、<code>style</code>、<code>color</code></td><td>文本。<code>style</code>：<code>normal</code> · <code>hero</code>（大字）· <code>caption</code>（小字）；<code>color</code>：<code>default</code> · <code>accent</code> · <code>warning</code> · <code>gradient</code>（渐变）</td></tr>
+                  <tr><th scope="row"><code>metric</code></th><td><code>value</code> / <code>bind</code>、<code>unit</code>、<code>style</code>、<code>animated</code></td><td>大数值（汇率 / 计数）。<code>unit</code> 追加单位；style 缺省 <code>hero</code>；<code>animated: true</code> 数字滚动动画 + 等宽数字</td></tr>
                   <tr><th scope="row"><code>icon</code></th><td><code>value</code></td><td>大号 SF Symbol</td></tr>
-                  <tr><th scope="row"><code>list</code></th><td><code>bind</code>、<code>titleKey</code>、<code>subtitleKey</code>、<code>valueKey</code>、<code>emptyText</code></td><td>读 state 数组渲染列表行；键取每个元素的字段，空数组显示 <code>emptyText</code></td></tr>
-                  <tr><th scope="row"><code>progress</code></th><td><code>value</code> / <code>bind</code></td><td>进度条，取值 0–1</td></tr>
+                  <tr><th scope="row"><code>list</code></th><td><code>bind</code>、<code>titleKey</code>、<code>subtitleKey</code>、<code>valueKey</code>、<code>emptyText</code>、<code>onTap</code>、<code>progressKey</code>、<code>progressMax</code></td><td>读 state 数组渲染列表行。<code>onTap</code>：<code>{page, prefix}</code> 点击项后把该元素字段写入 <code>prefix.*</code>（另附 <code>_index</code> / <code>_total</code> / <code>posFrac</code>）并跳页；<code>progressKey</code> 给每行加用量条（<code>progressMax</code> 缺省 100 按百分比）</td></tr>
+                  <tr><th scope="row"><code>progress</code></th><td><code>value</code> / <code>bind</code>、<code>label</code>、<code>detail</code>、<code>showPercent</code>、<code>max</code>、<code>thresholds</code></td><td>进度条，取值 0–1。带 <code>label</code> / <code>detail</code> / <code>thresholds</code> 时渲染为 AI 用量风格（标签 + 百分比行 / 三色胶囊条 / 说明行）；<code>thresholds: {warning, critical}</code> 越限变橙 / 红</td></tr>
+                  <tr><th scope="row"><code>ring</code></th><td><code>value</code> / <code>bind</code>、<code>label</code>、<code>showPercent</code>、<code>max</code>、<code>thresholds</code></td><td>AI 用量主页大圆环风格：trim 圆环 + 中心百分比 / 标签；fit 页占满中区，滚动页固定尺寸</td></tr>
+                  <tr><th scope="row"><code>stats</code></th><td><code>items</code>[]</td><td>三列统计格（天气页风格）：每格 <code>icon</code> + <code>value</code> / <code>bind</code> + <code>caption</code></td></tr>
+                  <tr><th scope="row"><code>sparkline</code></th><td><code>bind</code></td><td>迷你折线：读数字数组，归一化绘制 + 渐变填充</td></tr>
+                  <tr><th scope="row"><code>countdown</code></th><td><code>value</code> / <code>bind</code>、<code>label</code></td><td>倒计时：目标时刻支持 ISO8601 或 unix 秒 / 毫秒，每秒自驱动</td></tr>
+                  <tr><th scope="row"><code>tags</code></th><td><code>bind</code> 或 <code>values</code>[]</td><td>胶囊标签组：读字符串数组（或字面量），自适应网格换行</td></tr>
+                  <tr><th scope="row"><code>image</code></th><td><code>value</code> / <code>bind</code></td><td>远程图片：下载后缓存到本地（plugin-assets），封面风圆角 + 高光描边</td></tr>
+                  <tr><th scope="row"><code>qr</code></th><td><code>value</code> / <code>bind</code></td><td>二维码：fit 页占满中区，滚动页固定尺寸</td></tr>
+                  <tr><th scope="row"><code>spinner</code></th><td><code>bind</code></td><td>加载指示：<code>bind</code> 读布尔（<code>np.isLoading</code> 现成可绑），true 时显示；缺省常显</td></tr>
                   <tr><th scope="row"><code>divider</code></th><td>—</td><td>分隔线</td></tr>
                 </tbody>
               </table>
@@ -363,7 +397,8 @@
                 <tbody>
                   <tr><th scope="row"><code>label</code> / <code>icon</code></th><td>文字与 SF Symbol，至少给一个</td></tr>
                   <tr><th scope="row"><code>action</code></th><td>点按执行的动作 id</td></tr>
-                  <tr><th scope="row"><code>style</code></th><td><code>primary</code> · 实心强调色；<code>plain</code> · 玻璃质感</td></tr>
+                  <tr><th scope="row"><code>style</code></th><td><code>primary</code> · 实心强调色；<code>plain</code> · 玻璃质感；<code>danger</code> · 红（危险操作语义）</td></tr>
+                  <tr><th scope="row"><code>confirm</code></th><td><code>true</code> = 两击确认：第一击变红 3 秒，再击才执行——App 内禁弹窗的防误触语义</td></tr>
                 </tbody>
               </table>
             </div>
@@ -380,6 +415,8 @@
                   <tr><th scope="row"><code>copy</code></th><td><code>text</code></td><td>渲染模板后复制到剪贴板</td></tr>
                   <tr><th scope="row"><code>open-url</code></th><td><code>url</code></td><td>渲染模板后用系统浏览器打开 · 仅 http/https</td></tr>
                   <tr><th scope="row"><code>navigate</code></th><td><code>page</code></td><td>页内导航到 <code>pages</code> 中的另一页，头部出现返回箭头</td></tr>
+                  <tr><th scope="row"><code>media</code></th><td><code>command</code></td><td>控制内置播放器：<code>toggle</code>（播放 / 暂停）· <code>next</code> · <code>prev</code>；对任何已装载音源队列（本地 / 网易云 / 酷狗……）通用</td></tr>
+                  <tr><th scope="row"><code>app</code></th><td><code>provider</code></td><td>打开原生音源页：<code>local</code> · <code>netease</code> · <code>qq</code> · <code>kugou</code>（后三者为社区版能力，App Store 构建优雅降级为提示）</td></tr>
                 </tbody>
               </table>
             </div>
@@ -391,6 +428,8 @@
             <ul>
               <li><strong>默认刷新动作</strong>：第一个 <code>http</code> 动作（没有则第一个动作）。打开插件且 <code>loadOnStart</code> ≠ <code>false</code> 时执行一次；<code>refreshInterval</code> ≥ 5 秒则按周期重复。</li>
               <li><strong>模板变量</strong>：<code>{{key}}</code> 会替换成 state 当前值（数字、布尔直接转文字）；state 中不存在的键原样保留，方便分步调试。</li>
+              <li><strong>播放器数据源 <code>np.*</code></strong>：<code>bind</code> 以 <code>np.</code> 开头时绕过插件 state，实时读内置播放器（<code>np.title</code>、<code>np.artist</code>、<code>np.playlist</code>、<code>np.cover</code>、<code>np.isPlaying</code>、<code>np.isLoading</code>、<code>np.index</code>、<code>np.total</code>、<code>np.currentTime</code>、<code>np.duration</code>、<code>np.progress</code>、<code>np.timeText</code>）；只读——<code>set</code> / <code>extract</code> / 设置区 / 列表 <code>onTap</code> 前缀均不可写入。</li>
+              <li><strong>布局语义</strong>：缺省页溢出滚动（底部呼吸折叠箭头提示下方内容，到底变向上）；<code>fit: true</code> 强制一屏完整，中区内容自适应。</li>
               <li><strong>状态持久化</strong>：state 首次修改后写入本机 UserDefaults（键 <code>plugin.state.&lt;id&gt;</code>），重启 App 保留；插件管理里可重置回初始值。</li>
               <li><strong>反馈</strong>：请求进行中显示玻璃加载态；失败在头部下方给出提示文案，成功后自动清除。</li>
             </ul>
@@ -403,6 +442,7 @@
               <li><strong>导入方式</strong>：插件管理 → 右上角导入 → 选择 JSON 文件，或粘贴清单文本；文件名不影响 id，落盘以清单内 <code>id</code> 为准。</li>
               <li><strong>覆盖与卸载</strong>：同 id 重复导入即覆盖重装；插件管理支持删除与在蜂窝中隐藏（显隐只记「隐藏」名单）。</li>
               <li><strong>内置示例</strong>：首次启动自动种入「汇率」与「一言」两个示例插件，可随意修改或删除。</li>
+              <li><strong>热心网友分享</strong>：本页下方的社区示例可直接下载导入；欢迎把你的插件 JSON 以代码片段形式分享出来，优秀作品会收录到这里。</li>
             </ul>
           </section>
 
@@ -423,37 +463,93 @@
       <div class="shell section-head">
         <p class="eyebrow">Examples</p>
         <h2 id="examples-title">示例插件</h2>
-        <p>两个内置示例的完整清单。可以下载后直接导入，或载入生成器改造。</p>
+        <p>内置示例与热心网友分享的完整清单。下载后直接导入，或发给 AI 改造成你想要的样子。</p>
       </div>
-      <div class="shell examples-grid">
-        <article class="example-card">
-          <div class="example-mock exchange" aria-hidden="true">
-            <p class="mock-title">汇率</p>
-            <p class="mock-metric">7.16<small>CNY</small></p>
-            <p class="mock-caption">1 USD → CNY</p>
-          </div>
-          <h3>汇率 · demo.exchange</h3>
-          <p>GET 请求 + JSONPath 提取：picker 切换基准货币，metric 主显汇率，trailing 刷新按钮与底部主按钮共用同一个动作。</p>
-          <div class="example-actions">
-            <button class="button download" type="button" data-download-example="demo.exchange"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
-            <button class="button ghost" type="button" data-load-example="demo.exchange">载入生成器</button>
-          </div>
-          <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
-        </article>
-        <article class="example-card">
-          <div class="example-mock hitokoto" aria-hidden="true">
-            <p class="mock-quote">“</p>
-            <p class="mock-hero">既然选择了远方</p>
-            <p class="mock-caption">便只顾风雨兼程</p>
-          </div>
-          <h3>一言 · demo.hitokoto</h3>
-          <p>极简结构：无设置区，渐变背景 + hero 文本，打开即从 hitokoto API 拉取一句话，点「换一句」重新请求。</p>
-          <div class="example-actions">
-            <button class="button download" type="button" data-download-example="demo.hitokoto"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
-            <button class="button ghost" type="button" data-load-example="demo.hitokoto">载入生成器</button>
-          </div>
-          <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
-        </article>
+      <div class="shell">
+        <div class="examples-group">
+          <h3>内置示例</h3>
+        </div>
+        <div class="examples-grid">
+          <article class="example-card">
+            <div class="example-mock exchange" aria-hidden="true">
+              <p class="mock-title">汇率</p>
+              <p class="mock-metric">7.16<small>CNY</small></p>
+              <p class="mock-caption">1 USD → CNY</p>
+            </div>
+            <h3>汇率 · demo.exchange <span class="example-badge">内置示例</span></h3>
+            <p>GET 请求 + JSONPath 提取：picker 切换基准货币，metric 主显汇率，trailing 刷新按钮与底部主按钮共用同一个动作。</p>
+            <div class="example-actions">
+              <button class="button download" type="button" data-download-example="demo.exchange"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
+              <button class="button ghost" type="button" data-load-example="demo.exchange">载入生成器</button>
+            </div>
+            <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
+          </article>
+          <article class="example-card">
+            <div class="example-mock hitokoto" aria-hidden="true">
+              <p class="mock-quote">“</p>
+              <p class="mock-hero">既然选择了远方</p>
+              <p class="mock-caption">便只顾风雨兼程</p>
+            </div>
+            <h3>一言 · demo.hitokoto <span class="example-badge">内置示例</span></h3>
+            <p>极简结构：fit 一屏完整，渐变背景 + hero 文本，打开即从 hitokoto API 拉取一句话，点「换一句」重新请求。</p>
+            <div class="example-actions">
+              <button class="button download" type="button" data-download-example="demo.hitokoto"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
+              <button class="button ghost" type="button" data-load-example="demo.hitokoto">载入生成器</button>
+            </div>
+            <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
+          </article>
+        </div>
+
+        <div class="examples-group">
+          <h3>热心网友分享</h3>
+          <p>来自社区的代码片段，导入即用；也可以下载改造成自己的版本。</p>
+        </div>
+        <div class="examples-grid examples-grid-community">
+          <article class="example-card">
+            <div class="example-mock radar" aria-hidden="true">
+              <p class="mock-title">仓库雷达</p>
+              <p class="mock-metric">42.8k<small>★</small></p>
+              <p class="mock-repo">neo-idea/MaciWatch</p>
+              <p class="mock-caption">点仓库进详情 · 榜单每 5 分钟</p>
+            </div>
+            <h3>仓库雷达 · demo.radar <span class="example-badge community">热心网友分享</span></h3>
+            <p>多页 + 列表点按 + 阈值圆环的完整示范：GitHub Search API 拉语言榜单，<code>onTap</code> 进仓库详情页，图钉本地记忆；help 页静态演示 progress 阈值变色。</p>
+            <div class="example-actions">
+              <button class="button download" type="button" data-download-example="demo.radar"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
+              <button class="button ghost" type="button" data-copy-example="demo.radar"><svg aria-hidden="true"><use href="#i-copy" /></svg>复制 JSON</button>
+            </div>
+            <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
+          </article>
+          <article class="example-card">
+            <div class="example-mock visual" aria-hidden="true">
+              <p class="mock-title">视觉组件</p>
+              <svg class="mock-spark" viewBox="0 0 120 34" aria-hidden="true"><polyline points="2,27 19,19 36,23 53,10 70,15 87,7 104,12 118,4" fill="none" stroke="#FF6B9D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              <p class="mock-tags">Swift · 插件 · watchOS · 开源</p>
+              <p class="mock-caption">stats / sparkline / tags / countdown 全览</p>
+            </div>
+            <h3>视觉组件 · demo.visual <span class="example-badge community">热心网友分享</span></h3>
+            <p>新视觉组件一份看全：stats 统计格、sparkline 折线、tags 胶囊、countdown 倒计时、image、qr、spinner、渐变文字，外加 danger 两击确认按钮。</p>
+            <div class="example-actions">
+              <button class="button download" type="button" data-download-example="demo.visual"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
+              <button class="button ghost" type="button" data-copy-example="demo.visual"><svg aria-hidden="true"><use href="#i-copy" /></svg>复制 JSON</button>
+            </div>
+            <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
+          </article>
+          <article class="example-card">
+            <div class="example-mock music" aria-hidden="true">
+              <p class="mock-title">网易云音乐</p>
+              <p class="mock-note">♪</p>
+              <p class="mock-caption">native: music · 直达原生</p>
+            </div>
+            <h3>网易云入口 · demo.music <span class="example-badge community">热心网友分享</span></h3>
+            <p>一份常规音乐插件清单：np.* 实时播放数据、media 动作控制上下曲、音质设置与关于页；main 页带 <code>native: "music"</code> 标记，主体由内置音乐 App 原生渲染（需社区版构建）。</p>
+            <div class="example-actions">
+              <button class="button download" type="button" data-download-example="demo.music"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
+              <button class="button ghost" type="button" data-copy-example="demo.music"><svg aria-hidden="true"><use href="#i-copy" /></svg>复制 JSON</button>
+            </div>
+            <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
+          </article>
+        </div>
       </div>
     </section>
   </main>
