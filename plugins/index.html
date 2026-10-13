@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>插件系统 — MaciWatch</title>
+  <meta name="description" content="MaciWatch 插件：一份声明式 JSON 清单即可在手表上运行轻应用。在线生成器、清单格式参考与示例插件。" />
+  <meta name="theme-color" content="#070707" />
+  <link rel="canonical" href="https://maciwatch.zpad.app/plugins/" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MaciWatch" />
+  <meta property="og:title" content="插件系统 — MaciWatch" />
+  <meta property="og:description" content="一份声明式 JSON 清单即可在手表上运行轻应用：在线生成器、格式参考与示例插件。" />
+  <meta property="og:url" content="https://maciwatch.zpad.app/plugins/" />
+  <meta property="og:image" content="https://maciwatch.zpad.app/assets/app-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <script type="module" crossorigin src="/assets/plugins-DnS3ogVe.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/main-B8qPRR_F.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-DoHkkakz.css">
+  <link rel="stylesheet" crossorigin href="/assets/plugins-B4dUargP.css">
+</head>
+<body>
+  <svg class="icon-system" aria-hidden="true" focusable="false">
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5"/><path d="M4 20h16"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M19 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 14h5l-1 7 8-11h-5z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></symbol>
+  </svg>
+
+  <div class="page-glow" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="MaciWatch 首页">
+        <img src="/assets/app-icon.png" alt="" width="32" height="32" />
+        <span>MaciWatch</span>
+      </a>
+      <nav class="primary-nav" id="site-nav" aria-label="主导航">
+        <a href="/#flow">体验</a>
+        <a href="/#faces">表盘</a>
+        <a href="/#music">音乐</a>
+        <a href="/plugins/" aria-current="page">插件</a>
+        <a href="/#compare">差异</a>
+        <a href="/#license">授权</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <a class="download-link" href="/#download">下载试用</a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span><span class="sr-only">打开菜单</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="plugins-page">
+    <section class="legal-hero plugins-hero" aria-labelledby="plugins-title">
+      <div class="shell">
+        <a class="legal-back" href="/">返回首页</a>
+        <p class="eyebrow">Plugins</p>
+        <h1 id="plugins-title">一份 JSON，<br />手表上多一个轻应用</h1>
+        <p>MaciWatch 插件是纯声明式清单：元信息、页面组件、设置与 HTTP 动作写进一个 JSON 文件，导入即用，不需要写任何代码。</p>
+        <div class="fact-chips" aria-label="插件能力概览">
+          <span>声明式 JSON</span>
+          <span>HTTP + JSONPath</span>
+          <span>状态本地持久化</span>
+          <span>{{模板}} 变量</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plugins-quickstart" aria-labelledby="quickstart-title">
+      <div class="shell section-head">
+        <p class="eyebrow">快速开始</p>
+        <h2 id="quickstart-title">三步跑起第一个插件</h2>
+      </div>
+      <div class="shell quickstart-grid">
+        <article>
+          <span class="step-no">01</span>
+          <h3>生成清单</h3>
+          <p>用下方在线生成器配置图标、页面与动作，导出 <code>&lt;id&gt;.json</code>；或直接下载示例插件改字段。</p>
+        </article>
+        <article>
+          <span class="step-no">02</span>
+          <h3>导入 MaciWatch</h3>
+          <p>表冠点击打开蜂窝 → 插件管理 → 右上角导入：选择 JSON 文件，或粘贴清单文本。同 id 重复导入会覆盖重装。</p>
+        </article>
+        <article>
+          <span class="step-no">03</span>
+          <h3>蜂窝里打开</h3>
+          <p>插件出现在 Honeycomb 蜂窝中，点按即进入；打开时自动执行首个 HTTP 动作拉取数据，也可配置定时刷新。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section generator-section" id="generator" aria-labelledby="generator-title">
+      <div class="shell section-head">
+        <p class="eyebrow">Plugin Builder</p>
+        <h2 id="generator-title">在线插件生成器</h2>
+        <p>左侧配置、右侧实时预览清单 JSON。完成后复制或下载，直接导入 MaciWatch。</p>
+      </div>
+      <div class="shell generator-layout">
+        <form class="generator-form" id="generator-form" aria-label="插件清单配置" novalidate>
+
+          <fieldset class="gen-card" id="gen-basic">
+            <legend>基础信息</legend>
+            <div class="gen-grid">
+              <label class="gen-field"><span>插件 id <em>必填</em></span>
+                <input data-gen="id" type="text" value="com.example.myplugin" spellcheck="false" />
+                <small>字母/数字开头，仅限 <code>A-Z a-z 0-9 . _ -</code>，建议反向域名</small>
+              </label>
+              <label class="gen-field"><span>名称 <em>必填</em></span>
+                <input data-gen="name" type="text" value="我的插件" />
+                <small>蜂窝与标题的显示名</small>
+              </label>
+              <label class="gen-field"><span>版本号</span>
+                <input data-gen="version" type="number" min="1" step="1" value="1" />
+              </label>
+              <label class="gen-field"><span>图标（SF Symbol）<em>必填</em></span>
+                <input data-gen="icon" type="text" value="sparkles" spellcheck="false" />
+                <small>如 <code>dollarsign.circle.fill</code>、<code>quote.bubble.fill</code></small>
+              </label>
+              <label class="gen-field"><span>蜂窝渐变色 1</span>
+                <input data-gen="color1" type="text" placeholder="#F0619E" spellcheck="false" />
+                <small>hex：<code>#RGB</code> / <code>#RRGGBB</code> / <code>#RRGGBBAA</code></small>
+              </label>
+              <label class="gen-field"><span>蜂窝渐变色 2</span>
+                <input data-gen="color2" type="text" placeholder="#BD78EE" spellcheck="false" />
+                <small>与色 1 成对出现，缺省为灰色图标</small>
+              </label>
+            </div>
+            <div class="gen-grid">
+              <label class="gen-field"><span>背景类型</span>
+                <select data-gen="bg-type">
+                  <option value="none">跟随 App 默认</option>
+                  <option value="solid">纯色 solid</option>
+                  <option value="gradient">渐变 gradient</option>
+                  <option value="image">远程图片 image</option>
+                </select>
+              </label>
+              <label class="gen-field" data-bg-color><span>背景色</span>
+                <input data-gen="bg-color" type="text" placeholder="#1B2A4A" spellcheck="false" />
+              </label>
+              <label class="gen-field" data-bg-color2><span>背景色 2（渐变）</span>
+                <input data-gen="bg-color2" type="text" placeholder="#0C1424" spellcheck="false" />
+              </label>
+              <label class="gen-field" data-bg-angle><span>渐变角度（度）</span>
+                <input data-gen="bg-angle" type="number" step="15" placeholder="0" />
+                <small>0 = 自上而下；仅渐变背景有效</small>
+              </label>
+              <label class="gen-field" data-bg-url><span>图片 URL</span>
+                <input data-gen="bg-url" type="url" placeholder="https://example.com/bg.jpg" spellcheck="false" />
+                <small>下载后缓存到本地；仅 http/https</small>
+              </label>
+            </div>
+            <div class="gen-grid">
+              <label class="gen-field"><span>定时刷新（秒）</span>
+                <input data-gen="refresh" type="number" min="5" step="1" placeholder="留空 = 不定时" />
+                <small>≥ 5 生效；重复执行默认刷新动作</small>
+              </label>
+              <label class="gen-field gen-check"><span>打开即加载数据</span>
+                <input data-gen="load-on-start" type="checkbox" checked />
+                <small>关闭后仅在手动触发时请求（清单写入 <code>loadOnStart: false</code>）</small>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="gen-card" id="gen-page">
+            <legend>main 页面</legend>
+            <div class="gen-grid">
+              <label class="gen-field"><span>页面标题</span>
+                <input data-gen="page-title" type="text" placeholder="留空 = 使用插件名称" />
+              </label>
+              <label class="gen-field"><span>页面图标</span>
+                <input data-gen="page-icon" type="text" placeholder="留空 = 使用插件图标" spellcheck="false" />
+              </label>
+            </div>
+
+            <div class="gen-subhead">
+              <h4>头部右侧控件 <code>trailing</code></h4>
+              <button class="gen-add" type="button" data-add="trailing"><svg aria-hidden="true"><use href="#i-plus" /></svg>添加控件</button>
+            </div>
+            <div class="gen-rows" data-rows="trailing"></div>
+
+            <div class="gen-subhead">
+              <h4>内容组件 <code>body</code></h4>
+              <button class="gen-add" type="button" data-add="body"><svg aria-hidden="true"><use href="#i-plus" /></svg>添加组件</button>
+            </div>
+            <div class="gen-rows" data-rows="body"></div>
+
+            <div class="gen-subhead">
+              <h4>设置区 <code>settings</code></h4>
+              <button class="gen-add" type="button" data-add="settings"><svg aria-hidden="true"><use href="#i-plus" /></svg>添加设置</button>
+            </div>
+            <div class="gen-rows" data-rows="settings"></div>
+
+            <div class="gen-subhead">
+              <h4>底部按钮 <code>bottom</code></h4>
+              <button class="gen-add" type="button" data-add="bottom"><svg aria-hidden="true"><use href="#i-plus" /></svg>添加按钮</button>
+            </div>
+            <div class="gen-rows" data-rows="bottom"></div>
+          </fieldset>
+
+          <fieldset class="gen-card" id="gen-state">
+            <legend>初始状态 <code>state</code></legend>
+            <div class="gen-subhead">
+              <h4>键值对</h4>
+              <button class="gen-add" type="button" data-add="state"><svg aria-hidden="true"><use href="#i-plus" /></svg>添加键值</button>
+            </div>
+            <div class="gen-rows" data-rows="state"></div>
+          </fieldset>
+
+          <fieldset class="gen-card" id="gen-actions">
+            <legend>动作 <code>actions</code></legend>
+            <div class="gen-subhead">
+              <h4>动作列表</h4>
+              <button class="gen-add" type="button" data-add="actions"><svg aria-hidden="true"><use href="#i-plus" /></svg>添加动作</button>
+            </div>
+            <div class="gen-rows" data-rows="actions"></div>
+          </fieldset>
+        </form>
+
+        <aside class="generator-preview" aria-label="清单 JSON 预览">
+          <div class="preview-head">
+            <div>
+              <strong id="preview-filename">plugin.json</strong>
+              <p id="preview-status" role="status">清单有效，可以导入 MaciWatch</p>
+            </div>
+            <div class="preview-actions">
+              <button class="button ghost" type="button" data-copy-json><svg aria-hidden="true"><use href="#i-copy" /></svg>复制</button>
+              <button class="button download" type="button" data-download-json><svg aria-hidden="true"><use href="#i-download" /></svg>下载</button>
+            </div>
+          </div>
+          <pre class="json-view" data-json-view aria-live="polite"></pre>
+          <div class="preview-foot">
+            <span>载入示例：</span>
+            <button type="button" class="chip" data-load-example="demo.exchange">汇率</button>
+            <button type="button" class="chip" data-load-example="demo.hitokoto">一言</button>
+            <button type="button" class="chip chip-plain" data-clear-generator>清空重置</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section plugins-docs" id="docs" aria-labelledby="docs-title">
+      <div class="shell section-head">
+        <p class="eyebrow">Reference</p>
+        <h2 id="docs-title">清单格式参考</h2>
+        <p>字段与行为和 MaciWatch 内置的解析器一一对应；示例中的 <code>·</code> 表示可选字段缺省时的取值。</p>
+      </div>
+      <div class="shell legal-content plugins-docs-content">
+        <nav class="legal-toc" aria-label="插件文档目录">
+          <h2>目录</h2>
+          <ol>
+            <li><a href="#manifest">顶层字段</a></li>
+            <li><a href="#pages">页面与头部</a></li>
+            <li><a href="#components">内容组件</a></li>
+            <li><a href="#settings">设置区</a></li>
+            <li><a href="#buttons">底部按钮</a></li>
+            <li><a href="#actions">动作</a></li>
+            <li><a href="#runtime">运行时语义</a></li>
+            <li><a href="#install">安装与管理</a></li>
+            <li><a href="#security">安全与校验</a></li>
+          </ol>
+        </nav>
+
+        <article class="legal-body">
+          <section id="manifest">
+            <h2>1. 顶层字段</h2>
+            <p>一个插件是一份 JSON 对象，包含元信息、页面、动作、初始状态与刷新策略：</p>
+            <div class="table-wrap docs-table">
+              <table>
+                <thead><tr><th scope="col">字段</th><th scope="col">类型</th><th scope="col">必填</th><th scope="col">说明</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>id</code></th><td>String</td><td>是</td><td>唯一标识。字母/数字开头，仅限 <code>A-Z a-z 0-9 . _ -</code>，≤ 100 字符；建议反向域名，如 <code>com.example.stock</code></td></tr>
+                  <tr><th scope="row"><code>name</code></th><td>String</td><td>是</td><td>蜂窝与页面标题的显示名</td></tr>
+                  <tr><th scope="row"><code>version</code></th><td>Int</td><td>是</td><td>整数版本号，从 1 开始</td></tr>
+                  <tr><th scope="row"><code>icon</code></th><td>String</td><td>是</td><td>SF Symbol 名称；导入时逐个校验，非法即拒绝</td></tr>
+                  <tr><th scope="row"><code>colors</code></th><td>[String]</td><td>否</td><td>蜂窝图标渐变，两个 hex 色；缺省灰色。支持 <code>#RGB</code> / <code>#RRGGBB</code> / <code>#RRGGBBAA</code></td></tr>
+                  <tr><th scope="row"><code>background</code></th><td>Object</td><td>否</td><td>页面背景：<code>solid</code> / <code>gradient</code> / <code>image</code>；缺省用 App 默认背景</td></tr>
+                  <tr><th scope="row"><code>state</code></th><td>Object</td><td>否</td><td>初始状态键值（字符串 / 数字 / 布尔），修改后持久化到本机</td></tr>
+                  <tr><th scope="row"><code>refreshInterval</code></th><td>Double</td><td>否</td><td>定时刷新秒数，≥ 5 生效；缺省不定时</td></tr>
+                  <tr><th scope="row"><code>loadOnStart</code></th><td>Bool</td><td>否</td><td>打开插件即执行默认刷新动作 · 缺省 <code>true</code>；设 <code>false</code> 后仅手动触发</td></tr>
+                  <tr><th scope="row"><code>pages</code></th><td>Object</td><td>是</td><td>页面表，键为页面 id；<code>main</code> 是入口页，其余为 <code>navigate</code> 子页</td></tr>
+                  <tr><th scope="row"><code>actions</code></th><td>Object</td><td>是</td><td>动作表，键为动作 id，供按钮 / 头部控件 / 自动刷新引用</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="pages">
+            <h2>2. 页面与头部</h2>
+            <p>每个页面（<code>PluginPage</code>）由四部分组成：头部、内容组件数组、可选设置区、可选底部按钮。整页按「头 / 主区 / 附加区 / 底钮」滚动布局渲染。</p>
+            <div class="table-wrap docs-table">
+              <table>
+                <thead><tr><th scope="col">字段</th><th scope="col">类型</th><th scope="col">说明</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>header</code></th><td>Object</td><td><code>title</code>（必填）、<code>icon</code>（可选）、<code>trailing</code>[]（可选，右侧控件）</td></tr>
+                  <tr><th scope="row"><code>body</code></th><td>Array</td><td>内容组件，见下一节；可为空</td></tr>
+                  <tr><th scope="row"><code>settings</code></th><td>Array</td><td>设置区控件，改动即写回 state；可省略</td></tr>
+                  <tr><th scope="row"><code>bottom</code></th><td>Array</td><td>底部按钮；可省略</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>头部右侧控件 <code>trailing</code></strong> 有三种：</p>
+            <div class="table-wrap docs-table">
+              <table>
+                <thead><tr><th scope="col">type</th><th scope="col">字段</th><th scope="col">行为</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>button</code></th><td><code>icon</code>、<code>action</code></td><td>点按执行动作；命中默认刷新动作时显示加载态</td></tr>
+                  <tr><th scope="row"><code>toggle</code></th><td><code>bind</code>、<code>iconOn</code>、<code>iconOff</code></td><td>开关绑定 state 键，随值切换图标</td></tr>
+                  <tr><th scope="row"><code>text</code></th><td><code>bind</code></td><td>只读显示 state 值</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="components">
+            <h2>3. 内容组件</h2>
+            <p><code>body</code> 是组件数组，每个组件以 <code>type</code> 区分。除 <code>icon</code>、<code>list</code>、<code>divider</code> 外，文本类组件用 <code>value</code>（字面量，支持 <code>{{key}}</code> 模板）或 <code>bind</code>（读 state）二选一。</p>
+            <div class="table-wrap docs-table">
+              <table>
+                <thead><tr><th scope="col">type</th><th scope="col">字段</th><th scope="col">说明</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>text</code></th><td><code>value</code> / <code>bind</code>、<code>style</code>、<code>color</code></td><td>文本。<code>style</code>：<code>normal</code> · <code>hero</code>（大字）· <code>caption</code>（小字）；<code>color</code>：<code>default</code> · <code>accent</code> · <code>warning</code></td></tr>
+                  <tr><th scope="row"><code>metric</code></th><td><code>value</code> / <code>bind</code>、<code>unit</code>、<code>style</code></td><td>大数值（汇率 / 计数），<code>unit</code> 追加单位后缀 · style 缺省 <code>hero</code></td></tr>
+                  <tr><th scope="row"><code>icon</code></th><td><code>value</code></td><td>大号 SF Symbol</td></tr>
+                  <tr><th scope="row"><code>list</code></th><td><code>bind</code>、<code>titleKey</code>、<code>subtitleKey</code>、<code>valueKey</code>、<code>emptyText</code></td><td>读 state 数组渲染列表行；键取每个元素的字段，空数组显示 <code>emptyText</code></td></tr>
+                  <tr><th scope="row"><code>progress</code></th><td><code>value</code> / <code>bind</code></td><td>进度条，取值 0–1</td></tr>
+                  <tr><th scope="row"><code>divider</code></th><td>—</td><td>分隔线</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="settings">
+            <h2>4. 设置区</h2>
+            <p>设置区常驻在附加区，控件通过 <code>bind</code> 直接读写 state 键，改动立即持久化；HTTP 动作的 <code>{{key}}</code> 模板会读到最新值。</p>
+            <div class="table-wrap docs-table">
+              <table>
+                <thead><tr><th scope="col">type</th><th scope="col">字段</th><th scope="col">说明</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>picker</code></th><td><code>label</code>、<code>bind</code>、<code>options</code>[]</td><td>下拉单选，选项为字符串数组</td></tr>
+                  <tr><th scope="row"><code>stepper</code></th><td><code>label</code>、<code>bind</code>、<code>min</code> · 0、<code>max</code> · 100、<code>step</code> · 1</td><td>数字步进器</td></tr>
+                  <tr><th scope="row"><code>toggle</code></th><td><code>label</code>、<code>bind</code></td><td>布尔开关</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="buttons">
+            <h2>5. 底部按钮</h2>
+            <div class="table-wrap docs-table">
+              <table>
+                <thead><tr><th scope="col">字段</th><th scope="col">说明</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>label</code> / <code>icon</code></th><td>文字与 SF Symbol，至少给一个</td></tr>
+                  <tr><th scope="row"><code>action</code></th><td>点按执行的动作 id</td></tr>
+                  <tr><th scope="row"><code>style</code></th><td><code>primary</code> · 实心强调色；<code>plain</code> · 玻璃质感</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="actions">
+            <h2>6. 动作</h2>
+            <div class="table-wrap docs-table">
+              <table>
+                <thead><tr><th scope="col">type</th><th scope="col">字段</th><th scope="col">行为</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>http</code></th><td><code>method</code> · GET、<code>url</code>、<code>headers</code>{}、<code>body</code>、<code>extract</code>{}</td><td>发请求（15 秒超时）；<code>url</code> / <code>headers</code> / <code>body</code> 支持 <code>{{key}}</code> 模板；<code>extract</code> 把响应按 JSONPath 写入 state</td></tr>
+                  <tr><th scope="row"><code>set</code></th><td><code>values</code>{}</td><td>就地写入若干 state 键值</td></tr>
+                  <tr><th scope="row"><code>copy</code></th><td><code>text</code></td><td>渲染模板后复制到剪贴板</td></tr>
+                  <tr><th scope="row"><code>open-url</code></th><td><code>url</code></td><td>渲染模板后用系统浏览器打开 · 仅 http/https</td></tr>
+                  <tr><th scope="row"><code>navigate</code></th><td><code>page</code></td><td>页内导航到 <code>pages</code> 中的另一页，头部出现返回箭头</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>JSONPath</strong>：<code>extract</code> 的值是点路径加数组下标，例如 <code>$.rates.CNY</code>、<code>$.list[1].n</code>；取不到时该键写入 <code>null</code>。</p>
+          </section>
+
+          <section id="runtime">
+            <h2>7. 运行时语义</h2>
+            <ul>
+              <li><strong>默认刷新动作</strong>：第一个 <code>http</code> 动作（没有则第一个动作）。打开插件且 <code>loadOnStart</code> ≠ <code>false</code> 时执行一次；<code>refreshInterval</code> ≥ 5 秒则按周期重复。</li>
+              <li><strong>模板变量</strong>：<code>{{key}}</code> 会替换成 state 当前值（数字、布尔直接转文字）；state 中不存在的键原样保留，方便分步调试。</li>
+              <li><strong>状态持久化</strong>：state 首次修改后写入本机 UserDefaults（键 <code>plugin.state.&lt;id&gt;</code>），重启 App 保留；插件管理里可重置回初始值。</li>
+              <li><strong>反馈</strong>：请求进行中显示玻璃加载态；失败在头部下方给出提示文案，成功后自动清除。</li>
+            </ul>
+          </section>
+
+          <section id="install">
+            <h2>8. 安装与管理</h2>
+            <ul>
+              <li><strong>存放位置</strong>：<code>~/Library/Application Support/MaciWatch/plugins/&lt;id&gt;.json</code>，也可以手动放文件，插件管理会自动扫描。</li>
+              <li><strong>导入方式</strong>：插件管理 → 右上角导入 → 选择 JSON 文件，或粘贴清单文本；文件名不影响 id，落盘以清单内 <code>id</code> 为准。</li>
+              <li><strong>覆盖与卸载</strong>：同 id 重复导入即覆盖重装；插件管理支持删除与在蜂窝中隐藏（显隐只记「隐藏」名单）。</li>
+              <li><strong>内置示例</strong>：首次启动自动种入「汇率」与「一言」两个示例插件，可随意修改或删除。</li>
+            </ul>
+          </section>
+
+          <section id="security">
+            <h2>9. 安全与校验</h2>
+            <ul>
+              <li><strong>id 白名单</strong>：仅字母/数字开头 + <code>A-Z a-z 0-9 . _ -</code>，长度 ≤ 100，拒绝路径穿越（如 <code>../evil</code>）与纯符号。</li>
+              <li><strong>仅限 Web 协议</strong>：HTTP 与 <code>open-url</code> 只放行 <code>http</code> / <code>https</code>，<code>file://</code> 等本地协议一律拒绝。</li>
+              <li><strong>图标校验</strong>：清单内全部 SF Symbol 引用（含头部、trailing、body、底钮）都必须在当前系统符号集内，否则拒绝导入。</li>
+              <li><strong>数据边界</strong>：state 只存本机，不上传；请求超时 15 秒，失败不影响其他插件。</li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="section plugins-examples" id="examples" aria-labelledby="examples-title">
+      <div class="shell section-head">
+        <p class="eyebrow">Examples</p>
+        <h2 id="examples-title">示例插件</h2>
+        <p>两个内置示例的完整清单。可以下载后直接导入，或载入生成器改造。</p>
+      </div>
+      <div class="shell examples-grid">
+        <article class="example-card">
+          <div class="example-mock exchange" aria-hidden="true">
+            <p class="mock-title">汇率</p>
+            <p class="mock-metric">7.16<small>CNY</small></p>
+            <p class="mock-caption">1 USD → CNY</p>
+          </div>
+          <h3>汇率 · demo.exchange</h3>
+          <p>GET 请求 + JSONPath 提取：picker 切换基准货币，metric 主显汇率，trailing 刷新按钮与底部主按钮共用同一个动作。</p>
+          <div class="example-actions">
+            <button class="button download" type="button" data-download-example="demo.exchange"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
+            <button class="button ghost" type="button" data-load-example="demo.exchange">载入生成器</button>
+          </div>
+          <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
+        </article>
+        <article class="example-card">
+          <div class="example-mock hitokoto" aria-hidden="true">
+            <p class="mock-quote">“</p>
+            <p class="mock-hero">既然选择了远方</p>
+            <p class="mock-caption">便只顾风雨兼程</p>
+          </div>
+          <h3>一言 · demo.hitokoto</h3>
+          <p>极简结构：无设置区，渐变背景 + hero 文本，打开即从 hitokoto API 拉取一句话，点「换一句」重新请求。</p>
+          <div class="example-actions">
+            <button class="button download" type="button" data-download-example="demo.hitokoto"><svg aria-hidden="true"><use href="#i-download" /></svg>下载 JSON</button>
+            <button class="button ghost" type="button" data-load-example="demo.hitokoto">载入生成器</button>
+          </div>
+          <details class="example-json"><summary>查看清单</summary><pre class="json-view"></pre></details>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <a class="brand light" href="/"><img src="/assets/app-icon.png" alt="" width="32" height="32" /><span>MaciWatch</span></a>
+        <p>付费原生 macOS 桌面手表。专注、轻盈、可交互。</p>
+      </div>
+      <nav aria-label="产品导航"><h2>产品</h2><a href="/#flow">体验</a><a href="/#faces">表盘</a><a href="/#music">音乐</a><a href="/plugins/" aria-current="page">插件</a><a href="/#download">获取</a></nav>
+      <nav aria-label="商务导航"><h2>商务</h2><a href="/#license">授权</a><a href="mailto:license@zpad.app">联系授权</a><a href="/#faq">常见问题</a></nav>
+      <nav aria-label="法律信息"><h2>法律</h2><a href="/terms/">服务条款</a><a href="/privacy/">隐私政策</a></nav>
+      <p class="footer-word" aria-hidden="true">MaciWatch</p>
+      <p class="legal">© <span data-year>2026</span> MaciWatch Authors. All rights reserved. Apple、Apple Watch 与 macOS 是 Apple Inc. 的商标。</p>
+    </div>
+  </footer>
+
+</body>
+</html>
